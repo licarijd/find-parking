@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!--Set the viewport content (necessary to get CSS to display correctly on mobile), and attach the CSS in the header.-->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/all.css">
+	</head>
+	<!--The header contains 4 buttons - home, which will return users to home.html, account to access an account page, and saved/favorites pages for parking spots (I will add/modify these depending on assignment 2 requirements)-->
+	<header class="header">
+		<input class="home-button" type="image" src="images/home.png"/>
+		<input class="account-button" type="image" src="images/account.png"/>
+		<input class="saved-button" type="image" src="images/saved.png"/>
+		<input class="fav-button" type="image" src="images/fav.png"/>
+	</header>
+	<!--The document body specifies elements visible to the user-->
+	<body class="background">
+
+		<script>
+
+		/*validation function checks if form input matches the regular expressions for the given value
+		if form input does not match the regular expression for that input, a window alert will appear and
+		the user will be prompted to re enter input*/
+
+		function validate(form) {
+
+			if (form.username){
+				if(!(/^[a-zA-Z0-9]+{4,20}$/.test(form.username.value))){
+
+					alert("Username must be between 4 and 20 characters, and consist of numbers and letters");
+					return false;
+				}
+			}
+
+			if (form.password){
+				if(/^[a-zA-Z0-9]+{8,20}$/.test(form.password.value)){
+
+					alert("Password must be between 8 and 20 characters, and consist of numbers and letters");
+					return false;
+				}
+			}
+
+			if (form.email){
+				if(/^[a-zA-Z\-]+{4,20}$/.test(form.email.value)){
+
+					alert("Please enter a valid email address");
+					return false;
+				}
+			}
+
+			if(form.birthday){
+				if(/^(18|19|20)\d\d[-/](0[1-9]|1[012])[-/](0[1-9]|[12][0 9]|3[01])$/g.test(form.birthday.value)){
+
+					alert("Please enter your date of birth in the form yyyy-mm-dd");
+					return false;
+				}
+			}
+
+			//If each input passes regex tests, return true
+			return true;
+		}
+		</script>
+
+		<div class="box-register">
+
+			<!--input form consists of 4 types of input (text, email, date to specify birthday, and radio buttons to allow gender selection)-->
+			<form method="post" onsubmit="return validate(this);">
+				<h2 class="h2">Please choose a username and password</h2>
+				<input type="text" class="input" id="username-input" placeholder="choose a username" name="username" autocomplete="off">
+				</br>
+				<input type="text" class="input" id="password-input" placeholder="choose a password" name="password" autocomplete="off">
+				</br>
+				<input type="email" class="input" id="email-input" placeholder="enter your email" name="email" autocomplete="off">
+				<br><br>
+				<p class="h2">Birthday:</p>
+				<input type="date" class="input-2" id="birthday" name="birthday" value="2018-07-22" min="1900-01-01" max="2018-12-31" />
+			   	<br><br>
+			   	<p class="h2">Gender:</p>
+			   	<div class="gender">
+					<input type="radio" name="gender" name="gender" value="male" checked> Male<br>
+					<input type="radio" name="gender" name="gender" value="female"> Female<br>
+					<input type="radio" name="gender" value="other"> Other
+				</div>
+				<input type="submit"/>
+			</form>
+			<br>
+			<button class="input-button" id="login">GO</button>
+		</div>
+	</body>
+	<!--For now, the fotter will contain a contact link to a support email address-->
+	<footer class="footer">
+			<p class="footer-text">Contact us: <a href="rentals@findparking.com">
+					rentals@findparking.com</a></p>
+	</footer>
+</html>

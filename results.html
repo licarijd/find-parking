@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!--Set the viewport content (necessary to get CSS to display correctly on mobile), and attach the CSS in the header.-->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/all.css">
+
+		<script>
+			window.lat = parseFloat(localStorage.getItem("lat"));
+			window.lng = parseFloat(localStorage.getItem("lng"));
+			console.log(window.lat, window.lng)
+		</script>
+	</head>
+	<!--The header contains 4 buttons - home, which will return users to home.html, account to access an account page, and saved/favorites pages for parking spots (I will add/modify these depending on assignment 2 requirements)-->	
+	<header class="header">
+		<input class="home-button" type="image" src="images/home.png"/>
+		<input class="account-button" type="image" src="images/account.png"/>
+		<input class="saved-button" type="image" src="images/saved.png"/>
+		<input class="fav-button" type="image" src="images/fav.png"/>
+	</header>
+	<!--The document body specifies elements visible to the user-->
+	<body class="background">
+		<div class="box-xl">
+			<h2 class="h2"> Available Spots </h2>
+			<br>
+			
+			<div id="map" class="map"></div>
+
+			<!--parking spot results are displayed in a table with each row containing the name, distance, and price of a spot-->
+			<table id="results-table" class="table">
+				<tr>
+					<td>Name</td>
+					<td>Distance</td>
+					<td>Price</td> 
+					<td>Rating</td>
+				</tr>
+					<td></td>
+					<td></td> 
+					<td></td>
+				<tr>
+					</tr>
+					<td></td>
+					<td></td> 
+					<td></td>
+				<tr>
+						<tr>
+							</tr>
+							<td></td>
+							<td></td> 
+							<td></td>
+						<tr>
+				<tr>
+					<td><label><input type="radio" name="optradio">&nbsp 69 Main Street driveway</label></td>
+					<td>5km</td>
+					<td>$175</td> 
+					<td>5/10</td>
+				</tr>
+				<tr>
+					<td><label><input type="radio" name="optradio">&nbsp Scenic trail area 1 corner</label></td>
+					<td>7km</td>
+					<td>$300</td> 
+					<td>8/10</td>
+				</tr>
+				<tr>
+					<td><label><input type="radio" name="optradio">&nbsp Subway back lot spot 3</label></td>
+					<td>8km</td>
+					<td>$100</td> 
+					<td>7/10</td>
+				</tr>
+			</table>
+			<br>
+			<button class="input-button-small">GO</button>
+		</div>
+
+		<script>
+			// Initialize and add the map
+			function initMap() {
+				  // The location of Uluru
+
+				  var currentLocation = {lat: window.lat, lng: window.lng};
+				  var result1 = {lat: window.lat+0.1, lng: window.lng+0.1};
+				  var result2 = {lat: window.lat+0.2, lng: window.lng+0.2};
+				  var result3 = {lat: window.lat+0.3, lng: window.lng+0.1};
+
+				  // The map, centered at Uluru
+				  var map = new google.maps.Map(
+					  document.getElementById('map'), {zoom: 10, center: currentLocation});
+
+				  // The marker, positioned at Uluru
+				  var marker1 = new google.maps.Marker({position: result1, map: map});
+				  var marker2 = new google.maps.Marker({position: result2, map: map});
+				  var marker3 = new google.maps.Marker({position: result3, map: map});
+
+				  var contentString = '<div id="content">'+
+					'<div id="siteNotice">'+
+					'</div>'+
+					'<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+					'<div id="bodyContent">'+
+					'<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+					'sandstone rock formation in the southern part of the '+
+					'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+					'south west of the nearest large town, Alice Springs; 450&#160;km '+
+					'(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+					'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+					'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+					'Aboriginal people of the area. It has many springs, waterholes, '+
+					'rock caves and ancient paintings. Uluru is listed as a World '+
+					'Heritage Site.</p>'+
+					'<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+					'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+					'(last visited June 22, 2009).</p>'+
+					'</div>'+
+					'</div>';
+
+				  var infowindow = new google.maps.InfoWindow({
+						content: contentString
+					});
+
+				  marker1.addListener('click', function() {
+          				infowindow.open(map, marker1);
+        			});
+
+				  marker2.addListener('click', function() {
+          				infowindow.open(map, marker2);
+        			});
+
+				  marker3.addListener('click', function() {
+          				infowindow.open(map, marker3);
+        			});
+			}
+		</script>
+
+		<script async defer
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbP4svkwQIWh2S5TujdpOKLPI9plVj2s0&callback=initMap">
+		</script>
+
+	</body>
+	<!--For now, the fotter will contain a contact link to a support email address-->
+	<footer class="footer">
+			<p class="footer-text">Contact us: <a href="rentals@findparking.com">
+					rentals@findparking.com</a></p>
+	</footer>
+</html>

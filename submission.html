@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/all.css">
+	</head>
+	<header class="header">
+		<input class="home-button" type="image" src="images/home.png"/>
+		<input class="account-button" type="image" src="images/account.png"/>
+		<input class="saved-button" type="image" src="images/saved.png"/>
+		<input class="fav-button" type="image" src="images/fav.png"/>
+	</header>
+	<body class="background">
+
+			<script>
+
+					/*validation function checks if form input matches the regular expressions for the given value
+					if form input does not match the regular expression for that input, a window alert will appear and
+					the user will be prompted to re enter input*/
+			
+					function validate(form) {
+			
+						if (form.price){
+							if(!/^\d+(?:\.\d{0,2})?$/.test(form.price.value)){
+			
+								alert("Please give a price in CAD");
+								return false;
+							}
+						}
+			
+						if (form.lat){
+							if(/^\d{0,50}+(?:\.\d{0,50})?$/.test(form.lat.value)){
+			
+								alert("Please give a latitude numerical value");
+								return false;
+							}
+						}
+			
+						if (form.lng){
+							if(/^\d{0,50}+(?:\.\d{0,50})?$/.test(form.lng.value)){
+			
+								alert("Please give a longitude numerical value");
+								return false;
+							}
+						}
+
+						//If each input passes regex tests, return true
+						return true;
+					}
+					</script>
+
+		<div class="box-large">
+		<h2 class="h2">Submit Your Spot for Rental</h2>
+		<form  method="post" onsubmit="return validate(this);"> 
+			<input type="text" class="input" id="name-input" name="name" placeholder="Name" autocomplete="off">
+			<input type="text" class="input" id="description-input" name="description" placeholder="Description" autocomplete="off">
+			<input type="text" class="input" id="price-input" placeholder="Price (CAD)" name="price" autocomplete="off">
+			<input type="text" class="input" id="lat-input" placeholder="Latitude" name="lat" autocomplete="off">
+			<input type="text" class="input" id="lng-input" placeholder="Longitude" name="lng" autocomplete="off">
+			<h4 class="h2">Please upload a picture of the spot:</h4>
+			<input class="file-upload" type="file" name="pic" accept="image/*">
+		</form>
+		<br><br>
+		<button class="input-button" id="submit-btn">Submit</button>
+		</div>
+	</body>
+	<footer class="footer">
+			<p class="footer-text">Contact us: <a href="rentals@findparking.com">
+					rentals@findparking.com</a></p>
+	</footer>
+</html>

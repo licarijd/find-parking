@@ -1,0 +1,385 @@
+
+/*The first few elements defined are boxes. Boxes provide a white background for forms and other interactible 
+portions of webpages. These boxes are a fixed distance (percentage) from the borders (top, bottom, left, right) of the screen.
+All fonts in these boxes are of type Avenir. All font specs are defined as well.*/
+
+.box {
+
+  /*Fixed position, 15% away from the top of the page, 35% from the left at 500x400px*/
+  position: fixed; 
+  top: 15%;
+  left: 35%;
+  width: 500px;
+  height: 400px;
+
+  /*white background*/
+  background-color:#ffffff;
+
+  /*font specs defined (Avenir, size 16, etc)*/ 
+  font-family: Avenir;
+  font-size: 16px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+/*These boxes are identical, except for their size*/
+.box-register {
+  position: fixed;
+  top: 5%;
+  left: 35%;
+  width: 500px;
+  height: 700px;
+  background-color:#ffffff;
+  font-family: Avenir;
+  font-size: 16px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.box-medium {
+  position: fixed;
+  top: 10%;
+  left: 35%;
+  width: 500px;
+  height: 550px;
+  background-color:#ffffff;
+  font-family: Avenir;
+  font-size: 22px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.box-large {
+  position: fixed;
+  top: 5%;
+  left: 35%;
+  width: 500px;
+  height: 747px;
+  background-color:#ffffff;
+  font-family: Avenir;
+  font-size: 22px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.box-xl {
+  position: fixed;
+  top: 5%;
+  left: 17%;
+  width: 1000px;
+  height: 730px;
+  background-color:#ffffff;
+  font-family: Avenir;
+  font-size: 22px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.h1 {
+  position: relative;
+  top: 2%;
+  left: 3%;
+  font-size: large;
+  left: 18%;
+  font-family: Avenir;
+}
+
+/*Header position is fixed, and always touches the left edge of the screen. It's height is equal to the height of the screen,
+as defined by top: 0% and bottom: 0%. It's background is white.*/
+.header{
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  right: 93%;
+  bottom: 0%;
+  background-color:#ffffff;
+}
+
+
+/*For buttons, we simply set position and size. Header buttons are always very close to the left edge of the screen (1%)*/
+.home-button{
+  position: fixed;
+  top: 2%;
+  left: 1%;
+  width: 75px;
+  height: 75px;
+}
+
+.file-upload{
+  position: fixed;
+  top: 80%;
+  left: 47%;
+  width: 200px;
+  height: 200px;
+}
+
+.account-button{
+  position: fixed;
+  top: 20%;
+  left: 1%;
+  width: 75px;
+  height: 75px;
+}
+
+.saved-button{
+  position: fixed;
+  top: 38%;
+  left: 1%;
+  width: 75px;
+  height: 75px;
+}
+
+.fav-button{
+  position: fixed;
+  top: 56%;
+  left: 1%;
+  width: 75px;
+  height: 75px;
+}
+
+/*Input buttons contain text, so text attributes are defined here. Background color (blue) specifies button color,
+color (white) specifies text color. All elements defined from here modify the same attributes - either the buttons position
+with top, left, right, bottom, the button's size, color, border info, or the button's text specifications (I use Avenir for everything)*/
+.input-button {
+  position: relative;
+  top: 55%;
+  left: 25%;
+  width: 250px;
+  height: 60px;
+  border-radius: 5px;
+  background-color: #2883e2;
+  z-index: 2;
+  font-family: Avenir;
+  font-size: 24px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+
+.input-button-small {
+  position: relative;
+  top: 75%;
+  left: 45%;
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #2883e2;
+  z-index: 2;
+  font-family: Avenir;
+  font-size: 24px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+
+.h2{
+  position: relative;
+  top: 5%;
+  left:5%;
+}
+
+.rating-img{
+  position: relative;
+  top: 5%;
+  left:5%;
+  width: 40px;
+  height: 40px;
+}
+
+.map {
+  position: relative;
+  top: 10%;
+  left: 10%;
+  width: 800px;
+  height: 350px;
+}
+
+.ratings {
+  position: fixed;
+  top: 27%;
+  left: 55%;
+}
+
+.spot-photo {
+  position: relative;
+  top: 10%;
+  left: 10%;
+  width: 400px;
+  height: 400px;
+}
+
+.h4{
+  position: relative;
+  left: 10%;
+}
+
+.gender{
+  position: relative;
+  left: 10%;
+}
+
+/*Footer is wide enough to cover the width of the screen, but very narrow (25px in height). It is 96% from the top
+(close to the bottom, and is white. Avenir font is used as the default font).*/
+.footer {
+  position: fixed;
+  top: 96%;
+  width: 2000px;
+  height: 25px;
+  background-color:#ffffff;
+  font-family: Avenir;
+  font-size: 22px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.footer-text {
+  position: fixed;
+  top: 93%;
+  left:39%;
+}
+
+.background {
+  background:url('images/nature.gif');
+  background-repeat: no-repeat; 
+  background-size: 100% 100%;
+}
+
+.input-button-large {
+  position: relative;
+  top: 33%;
+  left: 12%;
+  margin-top: -20px;
+  margin-left: 40px;
+  width: 500px;
+  height: 150px;
+  border-radius: 5px;
+  background-color: #2883e2;
+  z-index: 2;
+  font-family: Avenir;
+  font-size: 24px;
+  font-weight: 900;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+}
+
+.table {
+  position: relative;
+  top: 2%;
+  left: 5%;
+  margin-left: 50px;
+  width: 800px;
+  height: 150px;
+}
+
+
+
+/* Always set the map height explicitly to define the size of the div element that contains the map. */
+#map {
+  position: fixed;
+  height: 100%;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#description {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+/*Inputs use a different font (Roboto), have large top margins (42%) for spacing and are padded
+When text overflows, the textbox scrolls right automatically (handled by text-overflow). Text color is dark grey,
+and the background is white*/
+.input {
+  position: relative;
+  top: 15%;
+  left:6%;
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  margin-top: 42px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 400px;
+
+  font-family: Avenir;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #2d2d2d;
+}
+
+.input-2 {
+  position: relative;
+  top: 15%;
+  left:6%;
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  margin-top: 2px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 400px;
+
+  font-family: Avenir;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #2d2d2d;
+}
+
+#title {
+  color: #fff;
+  background-color: #4d90fe;
+  font-size: 25px;
+  font-weight: 500;
+  padding: 6px 12px;
+}
