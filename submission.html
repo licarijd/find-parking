@@ -18,6 +18,22 @@
 					the user will be prompted to re enter input*/
 			
 					function validate(form) {
+
+						if (form.name){
+							if(!(/^([a-zA-Z0-9]{3,20})+$/.test(form.name.value))){
+
+								alert("Name must be between 3 and 20 characters, and can consist of numbers and letters");
+								return false;
+							}
+						}
+
+						if (form.description){
+							if(!(/^(.{8,20})+$/.test(form.description.value))){
+
+								alert("Description must be between 8 and 20 characters");
+								return false;
+							}
+						}
 			
 						if (form.price){
 							if(!/^\d+(?:\.\d{0,2})?$/.test(form.price.value)){
@@ -28,7 +44,7 @@
 						}
 			
 						if (form.lat){
-							if(/^\d{0,50}+(?:\.\d{0,50})?$/.test(form.lat.value)){
+							if(!/^\d{0,50}(?:\.\d{0,50})?$/.test(form.lat.value)){
 			
 								alert("Please give a latitude numerical value");
 								return false;
@@ -36,7 +52,7 @@
 						}
 			
 						if (form.lng){
-							if(/^\d{0,50}+(?:\.\d{0,50})?$/.test(form.lng.value)){
+							if(!/^\d{0,50}(?:\.\d{0,50})?$/.test(form.lng.value)){
 			
 								alert("Please give a longitude numerical value");
 								return false;
@@ -58,9 +74,9 @@
 			<input type="text" class="input" id="lng-input" placeholder="Longitude" name="lng" autocomplete="off">
 			<h4 class="h2">Please upload a picture of the spot:</h4>
 			<input class="file-upload" type="file" name="pic" accept="image/*">
+			<br><br>
+			<input class="input-button" type="submit" value="GO"/>
 		</form>
-		<br><br>
-		<button class="input-button" id="submit-btn">Submit</button>
 		</div>
 	</body>
 	<footer class="footer">

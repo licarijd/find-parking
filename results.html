@@ -9,7 +9,7 @@
 		<script>
 			window.lat = parseFloat(localStorage.getItem("lat"));
 			window.lng = parseFloat(localStorage.getItem("lng"));
-			console.log(window.lat, window.lng)
+			console.log(window.lat, window.lng);
 		</script>
 	</head>
 	<!--The header contains 4 buttons - home, which will return users to home.html, account to access an account page, and saved/favorites pages for parking spots (I will add/modify these depending on assignment 2 requirements)-->	
@@ -23,11 +23,11 @@
 	<body class="background">
 		<div class="box-xl">
 			<h2 class="h2"> Available Spots </h2>
-			<br>
+			<h5 class="h2"> Click the markers on the map to view more details about the parking spot! </h5>
 			
 			<div id="map" class="map"></div>
 
-			<!--parking spot results are displayed in a table with each row containing the name, distance, and price of a spot-->
+			<!--parking spot results are displayed in a table with each row containing the name, distance, and price of a spot
 			<table id="results-table" class="table">
 				<tr>
 					<td>Name</td>
@@ -70,71 +70,129 @@
 				</tr>
 			</table>
 			<br>
-			<button class="input-button-small">GO</button>
+			<button class="input-button-small">GO</button>-->
 		</div>
 
 		<script>
-			// Initialize and add the map
-			function initMap() {
-				  // The location of Uluru
 
+			// Initialize and add a Google Map
+			function initMap() {
+				
+				  //Hardcode 3 parking spots near the user's location
 				  var currentLocation = {lat: window.lat, lng: window.lng};
 				  var result1 = {lat: window.lat+0.1, lng: window.lng+0.1};
 				  var result2 = {lat: window.lat+0.2, lng: window.lng+0.2};
 				  var result3 = {lat: window.lat+0.3, lng: window.lng+0.1};
 
-				  // The map, centered at Uluru
+				  // Center the map at the user's location
 				  var map = new google.maps.Map(
 					  document.getElementById('map'), {zoom: 10, center: currentLocation});
 
-				  // The marker, positioned at Uluru
+				  //Draw markers
 				  var marker1 = new google.maps.Marker({position: result1, map: map});
 				  var marker2 = new google.maps.Marker({position: result2, map: map});
 				  var marker3 = new google.maps.Marker({position: result3, map: map});
 
-				  var contentString = '<div id="content">'+
-					'<div id="siteNotice">'+
+				  //Define the content window of each marker
+				  var windowContent1 = '<div id="content">'+
+					'<div id="markerData1">'+
 					'</div>'+
-					'<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
+					'<h1 id="firstHeading" class="firstHeading">69 Main Street driveway</h1>'+
 					'<div id="bodyContent">'+
-					'<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-					'sandstone rock formation in the southern part of the '+
-					'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-					'south west of the nearest large town, Alice Springs; 450&#160;km '+
-					'(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-					'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-					'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-					'Aboriginal people of the area. It has many springs, waterholes, '+
-					'rock caves and ancient paintings. Uluru is listed as a World '+
-					'Heritage Site.</p>'+
-					'<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-					'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-					'(last visited June 22, 2009).</p>'+
+					'<p>A small spot in the lot beside the condo</p>'+
+					'<table id="results-table" class="table">'+
+							'<tr>'+
+								'<td>Distance</td>'+
+								'<td>Price</td>'+
+								'<td>Rating</td>'+
+							'</tr>'+
+							'<tr>'+
+								'<td>7km</td>'+
+								'<td>$300</td>'+
+								'<td>8/10</td>'+
+							'</tr>'+
+					'</table>'+
+					'<a href="parking.html">'+
+					'More Details</a>' +
 					'</div>'+
 					'</div>';
 
-				  var infowindow = new google.maps.InfoWindow({
-						content: contentString
+					var windowContent2 = '<div id="content">'+
+					'<div id="markerData2">'+
+					'</div>'+
+					'<h1 id="firstHeading" class="firstHeading">Scenic trail area 1 corner</h1>'+
+					'<div id="bodyContent">'+
+					'<p>Parking spot in the Area 1 scenic trail lot</p>'+
+					'<table id="results-table" class="table">'+
+							'<tr>'+
+								'<td>Distance</td>'+
+								'<td>Price</td>'+
+								'<td>Rating</td>'+
+							'</tr>'+
+							'<tr>'+
+								'<td>5km</td>'+
+								'<td>$175</td>'+
+								'<td>5/10</td>'+
+							'</tr>'+
+					'</table>'+
+					'<a href="parking.html">'+
+					'More Details</a>'
+					'</div>'+
+					'</div>';
+
+					var windowContent3 = '<div id="content">'+
+					'<div id="markerData3">'+
+					'</div>'+
+					'<h1 id="firstHeading" class="firstHeading">Subway back lot spot 3</h1>'+
+					'<div id="bodyContent">'+
+					'<p>A small spot in the lot beside the subway</p>'+
+					'<table id="results-table" class="table">'+
+							'<tr>'+
+								'<td>Distance</td>'+
+								'<td>Price</td>'+
+								'<td>Rating</td>'+
+							'</tr>'+
+							'<tr>'+
+								'<td>8km</td>'+
+								'<td>$100</td>'+
+								'<td>7/10</td>'+
+							'</tr>'+
+					'</table>'+
+					'<a href="parking.html">'+
+					'More Details</a>'
+					'</div>'+
+					'</div>';
+
+				  //Set the content of each info window
+				  var infowindow1 = new google.maps.InfoWindow({
+						content: windowContent1
 					});
 
+				  var infowindow2 = new google.maps.InfoWindow({
+						content: windowContent2
+					});
+
+				  var infowindow3 = new google.maps.InfoWindow({
+						content: windowContent3
+					});
+
+				  //Make markers clickable such that clicking on markers displays the appropriate info window
 				  marker1.addListener('click', function() {
-          				infowindow.open(map, marker1);
+          				infowindow1.open(map, marker1);
         			});
 
 				  marker2.addListener('click', function() {
-          				infowindow.open(map, marker2);
+          				infowindow2.open(map, marker2);
         			});
 
 				  marker3.addListener('click', function() {
-          				infowindow.open(map, marker3);
+          				infowindow3.open(map, marker3);
         			});
 			}
 		</script>
-
 		<script async defer
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbP4svkwQIWh2S5TujdpOKLPI9plVj2s0&callback=initMap">
 		</script>
-
 	</body>
 	<!--For now, the fotter will contain a contact link to a support email address-->
 	<footer class="footer">
