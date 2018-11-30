@@ -17,7 +17,6 @@
 	<body class="background">
 		<div class="box-medium">
 				<script>
-
 					//Get location and set the latitude and longitude as cookies to be used by results.html
 					function getLocation(){
 						navigator.geolocation.getCurrentPosition(function(position) {
@@ -25,8 +24,9 @@
 
 							localStorage.setItem("lat", position.coords.latitude);
 							localStorage.setItem("lng", position.coords.longitude);
-
-							location.href = "results.html";
+							localStorage.setItem("distance", document.getElementById("dist-input").value);
+							
+							location.href = "results.php";
 						  });
 						}
 					</script>
