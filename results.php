@@ -181,7 +181,7 @@
                                     '<td>8/10</td>'+
                                 '</tr>'+
                         '</table>'+
-                        '<a href="parking.html">'+
+                        '<a href="parking.php?lat=' + attributes[4] + '&lng=' + attributes[5] + '">'+
                         'More Details</a>' +
                         '</div>'+
                         '</div>';
@@ -210,7 +210,7 @@
 								'<td>8/10</td>'+
 							'</tr>'+
 					'</table>'+
-					'<a href="parking.html">'+
+					'<a href="parking.php?lat=' + latitudes[0] + '&lng=' + longitudes[0] + '">'+
 					'More Details</a>' +
 					'</div>'+
 					'</div>';
@@ -233,7 +233,7 @@
 								'<td>5/10</td>'+
 							'</tr>'+
 					'</table>'+
-					'<a href="parking.html">'+
+					'<a href="parking.php?lat=' + latitudes[0] + '&lng=' + longitudes[0] + '">'+
 					'More Details</a>'
 					'</div>'+
 					'</div>';
@@ -256,7 +256,7 @@
 								'<td>7/10</td>'+
 							'</tr>'+
 					'</table>'+
-					'<a href="parking.html">'+
+					'<a href="parking.php?lat=' + latitudes[0] + '&lng=' + longitudes[0] + '">'+
 					'More Details</a>'
 					'</div>'+
 					'</div>';
