@@ -6,12 +6,12 @@ try {
         $pdo = new PDO('mysql:host=localhost;dbname=comp4ww3', 'licarijd', '1313781');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        //$query = $pdo->query("SELECT * FROM `users` WHERE `username` = ':username' and `passwordhash` = SHA2(CONCAT(':password', `salt`), 0)");
+        /*Check that the spot does not exist in the reserved table. 
+        If it is not reserved, it is available*/
         $count = $pdo->query("SELECT * FROM `reserved` WHERE `id` = '$id'")->rowCount();
 
         debug_to_console($count);
 
-        //return $query->fetchColumn() === 1;
         return $count === 0;
     }
 
@@ -20,15 +20,15 @@ try {
         $pdo = new PDO('mysql:host=localhost;dbname=comp4ww3', 'licarijd', '1313781');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        //$query = $pdo->query("SELECT * FROM `users` WHERE `username` = ':username' and `passwordhash` = SHA2(CONCAT(':password', `salt`), 0)");
+        /*Make sure the submitted spot is new by checking that no entry in the database
+         has an identical latitude and longitude*/
         $latCount = $pdo->query("SELECT * FROM `parkings` WHERE `lat` = '$lat'")->rowCount();
         $lngCount = $pdo->query("SELECT * FROM `parkings` WHERE `lng` = '$lat'")->rowCount();
 
         $count = $latCount + $lngCount;
 
         debug_to_console($count);
-
-        //return $query->fetchColumn() === 1;
+        
         return $count === 0;
     }
 
@@ -37,6 +37,7 @@ try {
         $pdo = new PDO('mysql:host=localhost;dbname=comp4ww3', 'licarijd', '1313781');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        //Reserve a spot by marking it as reserved and setting the renter
         $stmt = $pdo->prepare("UPDATE parkings SET reserved = 1 WHERE id = '$id'");
         $stmt->bindValue('$id', $parkingID);
         $stmt->execute();
@@ -44,8 +45,7 @@ try {
         $stmt = $pdo->prepare("UPDATE parkings SET renter = '$user' WHERE id = '$id'");
         $stmt->bindValue('$id', $parkingID);
         $stmt->execute();
-
-        //return $query->fetchColumn() === 1;
+        
         return True;
     }
 
@@ -54,6 +54,7 @@ try {
         $pdo = new PDO('mysql:host=localhost;dbname=comp4ww3', 'licarijd', '1313781');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        //Release a spot by unsetting the reserved amrker and the renter
         $stmt = $pdo->prepare("UPDATE parkings SET reserved = 0 WHERE id = '$id'");
         $stmt->bindValue('$id', $parkingID);
         $stmt->execute();
@@ -61,8 +62,7 @@ try {
         $stmt = $pdo->prepare("UPDATE parkings SET renter = 'none' WHERE id = '$id'");
         $stmt->bindValue('$id', $parkingID);
         $stmt->execute();
-
-        //return $query->fetchColumn() === 1;
+        
         return True;
     }
 
@@ -71,13 +71,13 @@ try {
         $pdo = new PDO('mysql:host=localhost;dbname=comp4ww3', 'licarijd', '1313781');
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        //$query = $pdo->query("SELECT * FROM `users` WHERE `username` = ':username' and `passwordhash` = SHA2(CONCAT(':password', `salt`), 0)");
+        ////Prepare an insert statement with 5 values - one for each parking spot attribute
         $stmnt = $pdo->prepare("INSERT INTO parkings (/*owner*/name, description, price, lat, lng) 
         VALUES(/*'$owner', */?,?,?,?,?)");
 
+        //Execute the statement with data from the submission form
         $stmnt -> execute([$name, $description, $price, $lat, $lng]);
 
-        //return $query->fetchColumn() === 1;
         return True;
     }
 

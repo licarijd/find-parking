@@ -1,10 +1,13 @@
 <?php
-    include('auth.php'); 
+	include('auth.php'); 
+	
+	//Allow user to register if their email and username are both unique
     if (isset ($_POST ['register'])) {
         if (checkIfNewUser($_POST['email-input'])){
             if (checkIfUniqueUsername($_POST['username-input'])){
                 if (createNewUser($_POST['username-input'], $_POST['password-input'], $_POST['email-input'], $_POST['birthday-input'], $_POST['gender-input'])){
-                    
+					
+					//Set log in session variable and redirect to home page
                     session_start();
                     $_SESSION['isLoggedIn'] = true;
 					$_SESSION['username'] = $_POST['username-input'];
@@ -16,11 +19,6 @@
         } else {
                 echo ("The email you entered is already tied to an existing account!");
         }
-    //} else {
-    
-       // echo ("Register not posted!");
-            //header("Location: http://" . $_SERVER['HTTP_HOST']."/login.html");
-   // }
    } 
 ?>
 <!DOCTYPE html>

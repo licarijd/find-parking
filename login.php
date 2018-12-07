@@ -1,4 +1,5 @@
 <?php
+	//Check username and password, redirect to the home page if login succeeds
     include('auth.php'); 
     if (isset ($_POST ['login'])) {
         if (checkPassword($_POST['username-input'], $_POST['password-input'])){
@@ -9,7 +10,6 @@
         } else {
     
             echo ("Login failed");
-            //header("Location: http://" . $_SERVER['HTTP_HOST']."/login.html");
         }
     } 
 ?>
@@ -23,11 +23,6 @@
 	</head>
 	<!--The document body specifies elements visible to the user-->
 	<body class="background">
-		<!--<script>
-			function setUsername(){
-				localStorage.setItem("username", document.getElementById("username-input").value);
-			}
-		</script>-->
         <!--only username and password is required for login-->
 		<form action="/login.php" method="post" class="box">
 			<h2 class="h2">Enter your username and password</h2>

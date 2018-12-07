@@ -8,6 +8,8 @@
 		<link rel="stylesheet" type="text/css" href="css/all.css">
 
 		<script>
+
+			//Add the newly submitted review to the current page
 			function insertReviewResponse() {
 				if (this.status == 200) {
 					response = JSON.parse(this.response);
@@ -20,6 +22,7 @@
 				}
 			}
 
+			//Open an XMLHttpRequest and submit the review
 			function submitReviewForm() {
 				request = new XMLHttpRequest();
 				request.open("POST", "submit_review.php");
@@ -75,8 +78,10 @@
 
 				$parking_id = htmlspecialchars($_GET["id"]);
 
+				//Get all reviews attached to the current parking spot
 				$result = $pdo->query("SELECT * FROM reviews WHERE `id` = '$id'");
 
+				//Add a new HTML element for each review and render them to the page
 				foreach ($result as $review) { 
 
                    $customer = $parking['customer'];
@@ -90,9 +95,7 @@
 				echo $e->getMessage();
 		}
 		?>
-				<!--<h5><u>larryQ: </u>Well sized spot, good for larger vehicles <br> as well.</h5>
-				<h5><u>dShawn_95: </u>A bit too close to the trees during  <br> summer.</h5>
-				<h5><u>BigBertha: </u>Worked for me</h5>-->
+		
 			</div>
 			<div id="reviewform" style="position:fixed;left:55%;top:57%;">
 				Rating:<input id="rating" name="rating" type="number" min="1" max="5"></input><br>
@@ -103,7 +106,7 @@
 			<h4 id="title2" class="h4"></h4>
 			<script>
 				
-
+			//Get variables from the url 
 			function getUrlVars() {
 				var vars = {};
 				var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -111,10 +114,14 @@
 				});
 				return vars;
 			}
+
+			//URL variables will be used to plot the map
 			window.lat = parseFloat(getUrlVars()["lat"]);
 			window.lng = parseFloat(getUrlVars()["lng"]);
+
 			document.getElementById("title").innerHTML = decodeURI(getUrlVars()["name"]);
 			document.getElementById("title2").innerHTML = decodeURI(getUrlVars()["name"]);
+
 			console.log(window.lat, window.lng, getUrlVars()["name"])
 			</script>
 			<div class="spot-photo" id="map"></div>
@@ -122,15 +129,15 @@
 		<script>
 				// Initialize and add the map
 				function initMap() {
-					  // The location of Uluru
 	
+					  //Create coordinate using lat and lng url variables
 					  var spot = {lat: window.lat, lng: window.lng};
 	
-					  // The map, centered at Uluru
+					  // The map, centered at the parking spot
 					  var map = new google.maps.Map(
 						  document.getElementById('map'), {zoom: 20, center: spot});
 	
-					  // The marker, positioned at Uluru
+					  // Set a marker at the parking spot
 					  var marker = new google.maps.Marker({position: spot, map: map});
 				}
 			</script>
