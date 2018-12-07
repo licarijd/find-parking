@@ -7,6 +7,7 @@
                     
                     session_start();
                     $_SESSION['isLoggedIn'] = true;
+					$_SESSION['username'] = $_POST['username-input'];
                     header("Location: http://" . $_SERVER['HTTP_HOST']."/home.php");
                 }
             } else {
@@ -74,6 +75,8 @@
 					return false;
 				}
 			}
+
+			//localStorage.setItem("username", document.getElementById("username-input").value);
 
 			//If each input passes regex tests, return true
 			return true;

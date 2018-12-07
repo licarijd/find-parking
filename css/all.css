@@ -221,6 +221,12 @@ with top, left, right, bottom, the button's size, color, border info, or the but
   left: 55%;
 }
 
+.rate {
+    position: fixed;
+    top: 67%;
+    left: 55%;
+  }
+
 .spot-photo {
   position: relative;
   top: 10%;
@@ -293,9 +299,9 @@ with top, left, right, bottom, the button's size, color, border info, or the but
   position: relative;
   top: 2%;
   left: 5%;
-  margin-left: 20px;
-  width: 300px;
-  height: 50px;
+  margin-left: 5px;
+  width: 50px;
+  height: 15px;
 }
 
 

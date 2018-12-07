@@ -8,16 +8,25 @@
 		<link rel="stylesheet" type="text/css" href="css/all.css">
 
 		<script>
-			function getUrlVars() {
-				var vars = {};
-				var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-					vars[key] = value;
-				});
-				return vars;
+			function insertReviewResponse() {
+				if (this.status == 200) {
+					response = JSON.parse(this.response);
+					if (response.status == false) {
+						document.getElementById("errorplaceholder").innerHTML = "<b>Error:</b> " + response.message;
+					} else {
+						document.getElementById("errorplaceholder").innerHTML = "Thank you!";
+			   			document.getElementById("reviewform").innerHTML = "<p>Rating: " + response.rating + "</p>" + "<p>Review: " + response.review + "</p>";
+					}
+				}
 			}
-			window.lat = parseFloat(getUrlVars()["lat"]);
-			window.lng = parseFloat(getUrlVars()["lng"]);
-			console.log(window.lat, window.lng)
+
+			function submitReviewForm() {
+				request = new XMLHttpRequest();
+				request.open("POST", "submit_review.php");
+				request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				request.onload = insertReviewResponse;
+				request.send("rating=" + encodeURIComponent(document.getElementById("rating").value) + "&review=" + encodeURIComponent(document.getElementById("review").value));
+			}
 		</script>
 		<script>
         function home(){
@@ -47,7 +56,7 @@
 	<!--The document body specifies elements visible to the user-->
 	<body class="background">
 		<div class="box-xl">	
-			<h2 class="h2">Scenic trail area 1 corner</h2><br>
+			<h2 id="title" class="h2"></h2><br>
 			<img src="images/rating.png" class="rating-img"></img>&nbsp &nbsp &nbsp &nbsp &nbsp 8/10
 			<br><br>
 
@@ -57,14 +66,59 @@
 			<!--the ratings div consists of a series of headers-->
 			<div id="ratings" class="ratings">
 				<h3>Reviews</h3>
-				<h5><u>larryQ: </u>Well sized spot, good for larger vehicles <br> as well.</h5>
+				
+		<?php
+		try {
+
+				$pdo = new PDO('mysql:host=localhost;dbname=comp4ww3', 'licarijd', '1313781');
+				$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+				$parking_id = htmlspecialchars($_GET["id"]);
+
+				$result = $pdo->query("SELECT * FROM reviews WHERE `id` = '$id'");
+
+				foreach ($result as $review) { 
+
+                   $customer = $parking['customer'];
+				   $value = $parking['value'];
+				   $description = $parking['description'];
+
+				   ?><h5><?=$parking['value']?><br><u><?=$parking['customer']?>: </u><?=$parking['description']?></h5><?php               
+				}
+
+		} catch (PDOException $e) {
+				echo $e->getMessage();
+		}
+		?>
+				<!--<h5><u>larryQ: </u>Well sized spot, good for larger vehicles <br> as well.</h5>
 				<h5><u>dShawn_95: </u>A bit too close to the trees during  <br> summer.</h5>
-				<h5><u>BigBertha: </u>Worked for me</h5>
+				<h5><u>BigBertha: </u>Worked for me</h5>-->
 			</div>
-			<h4 class="h4">Corner spot in Pinewood's Scenic Trail</h4>
+			<div id="reviewform" style="position:fixed;left:55%;top:57%;">
+				Rating:<input id="rating" name="rating" type="number" min="1" max="5"></input><br>
+				Review:<input id="review" name="review" type="text"></input>
+				<button onclick="submitReviewForm()">submit</button>
+				<!--<textarea id="errorplaceholder"></textarea>-->
+			</div>
+			<h4 id="title2" class="h4"></h4>
+			<script>
+				
+
+			function getUrlVars() {
+				var vars = {};
+				var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+					vars[key] = value;
+				});
+				return vars;
+			}
+			window.lat = parseFloat(getUrlVars()["lat"]);
+			window.lng = parseFloat(getUrlVars()["lng"]);
+			document.getElementById("title").innerHTML = decodeURI(getUrlVars()["name"]);
+			document.getElementById("title2").innerHTML = decodeURI(getUrlVars()["name"]);
+			console.log(window.lat, window.lng, getUrlVars()["name"])
+			</script>
 			<div class="spot-photo" id="map"></div>
 		</div>
-
 		<script>
 				// Initialize and add the map
 				function initMap() {

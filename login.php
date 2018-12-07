@@ -3,7 +3,8 @@
     if (isset ($_POST ['login'])) {
         if (checkPassword($_POST['username-input'], $_POST['password-input'])){
             session_start();
-            $_SESSION['isLoggedIn'] = true;
+			$_SESSION['isLoggedIn'] = true;
+			$_SESSION['username'] = $_POST['username-input'];
             header("Location: http://" . $_SERVER['HTTP_HOST']."/home.php");
         } else {
     
@@ -22,7 +23,11 @@
 	</head>
 	<!--The document body specifies elements visible to the user-->
 	<body class="background">
-
+		<!--<script>
+			function setUsername(){
+				localStorage.setItem("username", document.getElementById("username-input").value);
+			}
+		</script>-->
         <!--only username and password is required for login-->
 		<form action="/login.php" method="post" class="box">
 			<h2 class="h2">Enter your username and password</h2>

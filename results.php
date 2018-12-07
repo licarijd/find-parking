@@ -102,7 +102,7 @@
 				foreach ($result as $parking) { 
 
                    $lat = $parking['lat'];
-                   $lng = $parking['lng'];
+				   $lng = $parking['lng'];
 
                     ?><ul id=<?=$parking['id']?>>
                     
@@ -112,7 +112,8 @@
                         <li id="description" value=<?=$parking['description']?>><?=$parking['description']?></li>
                         <li id="price" value=<?=$parking['price']?>><?=$parking['price']?></li>
                         <li id="lat" value=<?=$parking['lat']?>><?=$parking['lat']?></li>
-                        <li id="lng" value=<?=$parking['lng']?>><?=$parking['lng']?></li>
+						<li id="lng" value=<?=$parking['lng']?>><?=$parking['lng']?></li>
+						<li id="id" value=<?=$parking['id']?>></li>
                     </ul>
 
 				<?php                   
@@ -136,6 +137,7 @@
 
                  var latitudes = [];
                  var longitudes = [];
+				 var sampleId = [];
 				
 				  //Hardcode 3 parking spots near the user's location
 				  var currentLocation = {lat: window.lat, lng: window.lng};
@@ -198,13 +200,14 @@
                                     '<td>8/10</td>'+
                                 '</tr>'+
                         '</table>'+
-                        '<a href="parking.php?lat=' + attributes[4] + '&lng=' + attributes[5] + '">'+
+                        '<a href="parking.php?lat=' + attributes[4] + '&lng=' + attributes[5] + '&id=' + attributes[6] + '&name=' + attributes[1]'">'+
                         'More Details</a>' +
                         '</div>'+
                         '</div>';
 
                         latitudes.push(attributes[4])
                         longitudes.push(attributes[5])
+						sampleId.push(attributes[6])
                   }
 
 
@@ -227,7 +230,7 @@
 								'<td>8/10</td>'+
 							'</tr>'+
 					'</table>'+
-					'<a href="parking.php?lat=' + latitudes[0] + '&lng=' + longitudes[0] + '">'+
+					'<a href="parking.php?lat=' + latitudes[0] + '&lng=' + longitudes[0] + '&id=' + sampleId[0] + '&name=Scenic''">'+
 					'More Details</a>' +
 					'</div>'+
 					'</div>';
@@ -250,7 +253,7 @@
 								'<td>5/10</td>'+
 							'</tr>'+
 					'</table>'+
-					'<a href="parking.php?lat=' + latitudes[0] + '&lng=' + longitudes[0] + '">'+
+					'<a href="parking.php?lat=' + latitudes[0] + '&lng=' + longitudes[0] + '&id=' + sampleId[0] + '&name=Rural''">'+
 					'More Details</a>'
 					'</div>'+
 					'</div>';
@@ -273,7 +276,7 @@
 								'<td>7/10</td>'+
 							'</tr>'+
 					'</table>'+
-					'<a href="parking.php?lat=' + latitudes[0] + '&lng=' + longitudes[0] + '">'+
+					'<a href="parking.php?lat=' + latitudes[0] + '&lng=' + longitudes[0] + '&id=' + sampleId[0] + '&name=Urban''">'+
 					'More Details</a>'
 					'</div>'+
 					'</div>';
