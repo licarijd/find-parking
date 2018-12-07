@@ -4,7 +4,7 @@
         if (checkPassword($_POST['username-input'], $_POST['password-input'])){
             session_start();
             $_SESSION['isLoggedIn'] = true;
-            header("Location: http://" . $_SERVER['HTTP_HOST']."/search.html");
+            header("Location: http://" . $_SERVER['HTTP_HOST']."/home.php");
         } else {
     
             echo ("Login failed");
@@ -20,13 +20,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<link rel="stylesheet" type="text/css" href="css/all.css">
 	</head>
-	<!--The header contains 4 buttons - home, which will return users to home.html, account to access an account page, and saved/favorites pages for parking spots (I will add/modify these depending on assignment 2 requirements)-->
-	<header class="header">
-		<input class="home-button" type="image" src="images/home.png"/>
-		<input class="account-button" type="image" src="images/account.png"/>
-		<input class="saved-button" type="image" src="images/saved.png"/>
-		<input class="fav-button" type="image" src="images/fav.png"/>
-	</header>
 	<!--The document body specifies elements visible to the user-->
 	<body class="background">
 

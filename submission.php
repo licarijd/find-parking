@@ -19,10 +19,18 @@
 		<link rel="stylesheet" type="text/css" href="css/all.css">
 	</head>
 	<header class="header">
-		<input class="home-button" type="image" src="images/home.png"/>
-		<input class="account-button" type="image" src="images/account.png"/>
-		<input class="saved-button" type="image" src="images/saved.png"/>
-		<input class="fav-button" type="image" src="images/fav.png"/>
+		
+    <input class="home-button" onclick="home()" type="image" src="images/home.png"/>
+    <input class="account-button" onclick="logout()" type="image" src="images/logout.png"/>
+        <script>
+        function home(){
+            location.href = "home.php";
+        }
+
+        function logout(){
+            location.href = "logout.php";
+        }
+    </script>
 	</header>
 	<body class="background">
 

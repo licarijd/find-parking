@@ -1,3 +1,4 @@
+<?php require 'loggedInCheck.inc.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -5,7 +6,6 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<link rel="stylesheet" type="text/css" href="css/all.css">
-
 		<script>
 			window.lat = parseFloat(localStorage.getItem("lat"));
 			window.lng = parseFloat(localStorage.getItem("lng"));
@@ -13,13 +13,30 @@
 
 			console.log(window.lat, window.lng, window.distance);
 		</script>
+		<script>
+        function home(){
+            location.href = "home.php";
+        }
+
+        function logout(){
+            location.href = "logout.php";
+        }
+    </script>
 	</head>
 	<!--The header contains 4 buttons - home, which will return users to home.html, account to access an account page, and saved/favorites pages for parking spots (I will add/modify these depending on assignment 2 requirements)-->	
 	<header class="header">
-		<input class="home-button" type="image" src="images/home.png"/>
-		<input class="account-button" type="image" src="images/account.png"/>
-		<input class="saved-button" type="image" src="images/saved.png"/>
-		<input class="fav-button" type="image" src="images/fav.png"/>
+		
+	<input class="home-button" onclick="home()" type="image" src="images/home.png"/>
+	<input class="account-button" onclick="logout()" type="image" src="images/logout.png"/>
+		<script>
+            function home(){
+                location.href = "home.php";
+            }
+
+            function logout(){
+                location.href = "logout.php";
+            }
+		</script>
 	</header>
 	<!--The document body specifies elements visible to the user-->
 	<body class="background">
